@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK House Price Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: url('static/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f1f1f1;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.75);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .btn-primary {
+      width: 100%;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: lightgreen;
+    }
+
+    select,
+    input {
+      background-color: #1c1c1c !important;
+      color: white !important;
+      border: 1px solid #444;
+    }
+
+    .dark-mode {
+      background-color: #f8f9fa !important;
+      color: #212529 !important;
+    }
+
+    .dark-mode .container {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      color: #212529 !important;
+    }
+
+    .dark-mode .form-label {
+      color: #212529 !important;
+    }
+
+    .dark-mode select,
+    .dark-mode input {
+      background-color: #ffffff !important;
+      color: #212529 !important;
+      border: 1px solid #ced4da;
+    }
+
+    /* Fix for checkbox tick visibility */
+    .form-check-input[type="checkbox"] {
+      accent-color: #f1f1f1;
+    }
+
+    .dark-mode .form-check-input[type="checkbox"] {
+      accent-color: #0d6efd;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>UK House Price Prediction</h2>
+    <form id="houseForm">
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <label class="form-label">UTTARAKHAND</label>
+          <select class="form-select" name="City" required>
+            <option value="" disabled selected>Select City</option>
+            <option value="Dehradun">Dehradun</option>
+            <option value="Nainital">Nainital</option>
+            <option value="Haridwar">Haridwar</option>
+            <option value="Rishikesh">Rishikesh</option>
+            <option value="Haldwani">Haldwani</option>
+            <option value="Pithoragarh">Pithoragarh</option>
+            <option value="Chamoli">Chamoli</option>
+            <option value="Tehri Garhwal">Tehri Garhwal</option>
+            <option value="Pauri Garhwal">Pauri Garhwal</option>
+            <option value="Udham Singh Nagar">Udham Singh Nagar</option>
+            <option value="Bageshwar">Bageshwar</option>
+            <option value="Champawat">Champawat</option>
+            <option value="Rudraprayag">Rudraprayag</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Property Type</label>
+          <select class="form-select" name="Property_Type" required>
+            <option value="" disabled selected>Select Property Type</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Villa">Villa</option>
+            <option value="Independent House">Independent House</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">BHK</label>
+          <input type="number" class="form-control" name="BHK" min="1" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Size (sq ft)</label>
+          <input type="number" class="form-control" name="Size_in_SqFt" min="100" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Year Built</label>
+          <input type="number" class="form-control" name="Year_Built" min="1900" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Furnished Status</label>
+          <select class="form-select" name="Furnished_Status" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Furnished">Furnished</option>
+            <option value="Semi-furnished">Semi-furnished</option>
+            <option value="Unfurnished">Unfurnished</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Floor No</label>
+          <input type="number" class="form-control" name="Floor_No" min="0" required disabled>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Total Floors</label>
+          <input type="number" class="form-control" name="Total_Floors" min="1" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nearby Schools</label>
+          <input type="number" class="form-control" name="Nearby_Schools" min="0" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nearby Hospitals</label>
+          <input type="number" class="form-control" name="Nearby_Hospitals" min="0" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Transport Accessibility</label>
+          <select class="form-select" name="Public_Transport_Accessibility" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Parking Space</label>
+          <select class="form-select" name="Parking_Space" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Security</label>
+          <select class="form-select" name="Security" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Amenities (Select all that apply)</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="Amenities" value="Garden">
+          <label class="form-check-label">Garden</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="Amenities" value="Gym">
+          <label class="form-check-label">Gym</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="Amenities" value="Playground">
+          <label class="form-check-label">Playground</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="Amenities" value="Clubhouse">
+          <label class="form-check-label">Clubhouse</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="Amenities" value="Pool">
+          <label class="form-check-label">Pool</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Facing</label>
+          <select class="form-select" name="Facing" required>
+            <option value="" disabled selected>Select</option>
+            <option value="North">North</option>
+            <option value="South">South</option>
+            <option value="East">East</option>
+            <option value="West">West</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Owner Type</label>
+          <select class="form-select" name="Owner_Type" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Owner">Owner</option>
+            <option value="Builder">Builder</option>
+            <option value="Broker">Broker</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Availability Status</label>
+        <select class="form-select" name="Availability_Status" required>
+          <option value="" disabled selected>Select</option>
+          <option value="Ready_to_Move">Ready to Move</option>
+          <option value="Under_Construction">Under Construction</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Predict Price</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+
+
+    // Enable/disable Floor No based on Property Type
+    document.querySelector('select[name="Property_Type"]').addEventListener('change', function () {
+      const floorInput = document.querySelector('input[name="Floor_No"]');
+      if (this.value === "Apartment") {
+        floorInput.disabled = false;
+      } else {
+        floorInput.disabled = true;
+        floorInput.value = '';
+      }
+    });
+
+    document.getElementById('houseForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const formObj = {};
+
+      formData.forEach((value, key) => {
+        if (key === 'Amenities') {
+          if (!formObj[key]) formObj[key] = [];
+          formObj[key].push(value);
+        } else {
+          formObj[key] = isNaN(value) ? value : Number(value);
+        }
+      });
+
+      if (Array.isArray(formObj['Amenities'])) {
+        formObj['Amenities'] = formObj['Amenities'].join(', ');
+      }
+
+      try {
+        const response = await fetch('/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formObj)
+        });
+
+        const data = await response.json();
+        if (data && data.predicted_price) {
+          document.getElementById('result').textContent = `Predicted House Price: ₹${data.predicted_price.toLocaleString('en-IN')} Lakh`;
+        } else {
+          document.getElementById('result').textContent = 'Prediction failed. Please try again.';
+        }
+      } catch (error) {
+        document.getElementById('result').textContent = 'Error: ' + error.message;
+      }
+    });
+  </script>
+</body>
+
+</html>
