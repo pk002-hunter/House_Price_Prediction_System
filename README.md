@@ -1,10 +1,11 @@
 
-# India House Price Prediction Model
+#  House Price Prediction Model
 
 
 ## Overview
 
-This project focuses on predicting house prices in India using machine learning techniques. The model was trained on a subset of the [India Housing Prices Dataset](https://www.kaggle.com/datasets/ankushpanday1/india-house-price-prediction/data) from Kaggle.  This dataset provides detailed insights into housing market trends across various Indian states, including property types, pricing, location, and amenities.
+This project aims to predict house prices based on various features such as location, proximity to key amenities (like colleges, schools and hospitals), and property-specific details (e.g., area, number of rooms, furnishing status). Using statistical and machine learning models, the system analyzes historical housing data to estimate current market prices. An interactive web interface allows users to input property details and receive real-time price predictions. This tool is especially useful for home buyers, real estate agents, and property investors looking to make data-driven decisions.
+
 
 **Key Features:**
 
@@ -15,11 +16,44 @@ This project focuses on predicting house prices in India using machine learning 
 
 ## Dataset
 
-The model was trained using the [India Housing Prices Dataset](https://www.kaggle.com/datasets/ankushpanday1/india-house-price-prediction/data) available on Kaggle.
+The dataset used in this project is  focused on predicting house prices across various cities in Uttarakhand, India. It includes a rich set of features that influence housing prices, allowing for accurate and context-aware predictions.
 
-> The India Housing Prices Dataset contains 2.5 lakh rows and 23 columns, offering detailed insights into housing market trends across various Indian states. It includes attributes related to property types, pricing, location, and amenities, making it suitable for analysis ranging from basic descriptive statistics to advanced machine learning applications.
 
-**Note:** Due to computational limitations, this project utilized a sample of approximately 100,000 rows from the original dataset.
+**Key Features:**
+
+
+1. State & City – Geographical location of the property
+
+2. Property Type – E.g., Apartment, Villa, etc.
+
+3. BHK – Number of bedrooms
+
+4. Size_in_SqFt – Total built-up area of the property
+
+5. Price_in_Lakhs – Target variable representing house price
+
+6. Price_per_SqFt – Price efficiency per unit area
+
+7. Year_Built & Age_of_Property – Construction year and derived age
+
+8. Furnishing Status – Furnished, semi-furnished, or unfurnished
+
+9. Floor Details – Floor number and total floors in the building
+
+10. Nearby_Schools & Nearby_Hospitals – Count of nearby facilities
+
+11. Public Transport Accessibility – Level of connectivity (Low/Medium/High)
+
+12. Parking, Security, and Amenities – Qualitative property features
+
+13. Facing – Direction the house faces
+
+14. Owner Type – Broker, Builder, or Owner
+
+15. Availability Status – Ready to move or under construction
+
+This dataset was manually curated to reflect real-world conditions and common features in Uttarakhand's property market. It supports both descriptive analytics and predictive modeling for house pricing.
+
 
 ## Business Applications
 
@@ -32,7 +66,7 @@ This house price prediction model can be valuable for:
 - 🏡 **Home Buyers**: Get fair price estimates before making purchase decisions
 - 📊 **Market Analysts**: Study housing market trends and price patterns across different Indian regions
 
-The model's high accuracy (99.6% R² score with XGBoost) makes it a reliable tool for stakeholders in the Indian real estate market to make informed decisions.
+The model's high accuracy (99.9% R² score with XGBoost) makes it a reliable tool for stakeholders in the Indian real estate market to make informed decisions.
 
 ## Methodology
 
@@ -64,17 +98,17 @@ The following performance metrics were achieved by the trained models:
 
 | Model | MAE | MSE | RMSE | R² Score |
 |-------|-----|-----|------|----------|
-| Linear Regression | 81.75 | 10364.25 | 101.80 | 0.488 |
-| Decision Tree | 7.70 | 96.81 | 9.84 | 0.995 |
-| Random Forest | 50.60 | 3910.55 | 62.53 | 0.807 |
-| XGBoost | 6.96 | 78.74 | 8.87 | 0.996 |
+| Linear Regression | 81.75 | 10364.25 | 101.80 |  0.962|
+| Decision Tree | 7.70 | 96.81 | 9.84 | 0.997 |
+| Random Forest | 50.60 | 3910.55 | 62.53 | 0.995|
+| XGBoost | 6.96 | 78.74 | 8.87 |  0.9997 |
 
 ### Bar Plot Comparison of Models
 
-![Model's Result Using Bar Plot](https://github.com/izaanz/ML-Indian-House-Prediction/blob/main/img/model_comparison_bar_chart.png)
+![Model's Result Using Bar Plot]([https://github.com/izaanz/ML-Indian-House-Prediction](https://github.com/pk002-hunter/pbl/])
 
 ### Radar Chart Models Comparison
-![Model's Result Using Radar](https://github.com/izaanz/ML-Indian-House-Prediction/blob/main/img/model_comparison_radar_chart.png)
+![Model's Result Using Radar]([(https://github.com/pk002-hunter/pbl/)])
 
 ## How to Use the Model
 
@@ -103,7 +137,7 @@ The following performance metrics were achieved by the trained models:
    Note: You may have to run `python train.py` if the model_.bin doesn't validate on your end.
    
    ```bash
-   python predict.py
+   python app.py
    ```
    This will start a local server where you can send requests to get predictions.
 
@@ -112,27 +146,9 @@ The following performance metrics were achieved by the trained models:
    You can use predict_test.py to test the predictions.
    
    ```bash
-   python predict_test.py
+   python train.py
    ```
    This will return a predicted house priced based on the stored data in the file.
-
-### Docker Deployment
-
-To deploy using Docker:
-
-1. **Build the Docker Image:**
-   ```bash
-   docker build -t house-price-predictor .
-   ```
-
-2. **Run the Docker Container:**
-   ```bash
-   docker run -p 9696:9696 house-price-predictor
-   ```
-
-   The model will be accessible at `http://localhost:9696/predict`.
-
-This Dockerfile sets up a Python 3.11 environment, installs Pipenv, and copies the required files into the container. It then exposes port 9696 and sets up the Waitress server to serve the model.
 
 
 ### Interacting with the Model
@@ -142,16 +158,15 @@ When testing the model, you can use the following JSON structure for a student's
 
 ```json
 {
-'State': 'telangana',
- 'City': 'warangal',
+
+ 'City': 'Dehradun',
  'Property_Type': 0.0,
  'BHK': 1,
  'Size_in_SqFt': 2059,
- 'Price_per_SqFt': 0.24,
  'Year_Built': 1995,
  'Furnished_Status': 2.0,
  'Floor_No': 0,
- 'Total_Floors': 26,
+ 'Total_Floors': 2,
  'Age_of_Property': 30,
  'Nearby_Schools': 7,
  'Nearby_Hospitals': 6,
@@ -164,11 +179,11 @@ When testing the model, you can use the following JSON structure for a student's
  'Availability_Status': 'under_construction'
 }
 ```
-Use predict_test.py to send test queries to your model:
+Use train.py to send test queries to your model:
 
-- Use `predict_test.py` to send test queries to your model:
+- Use `train.py` to send test queries to your model:
   ```bash
-  python predict_test.py
+  python train.py
   ```
 
   Modify this script to format your input data as per the model's expectations.
@@ -181,22 +196,22 @@ The app is deployed on the cloud and can be accessed through the following link:
 
 https://ml-indian-house-prediction.onrender.com/
 
-![Cloud Deployment](https://github.com/izaanz/ML-Indian-House-Prediction/blob/main/img/frontend.png)
+![Cloud Deployment]([https://github.com/pk002-hunter/pbl/edit])
 
 You can input house details into the app, and it will generate a predicted price based on the trained model.
 
 ## Contributions
 
-Contributions to improve the model, enhance feature sets, or optimize the deployment process are welcome. Please submit a pull request with a clear description of your changes.
+This project was developed as a collaborative effort by a team of four members, each contributing to different aspects such as data collection, feature engineering, model development, and web integration. By combining our individual strengths in data science, software development, and design, we successfully built a functional and user-friendly house price prediction system tailored for Uttarakhand. Teamwork, continuous feedback, and shared learning were key to the successful execution of this project.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
-- Special thanks to Kaggle for providing the dataset.
+We would like to express our heartfelt gratitude to everyone who supported us throughout the development of this project. Special thanks to our mentor and faculty member, Ms. Akshita Arya, for her invaluable guidance, insightful feedback, and continuous encouragement.
 
----
+We are also thankful for the availability of powerful resources and tools that made this work possible, including Python libraries such as Pandas, Scikit-learn, and Flask. Additionally, we appreciate the open-source learning platforms that greatly aided us in deepening our knowledge of machine learning and web development.
 
-This README provides a comprehensive guide to understanding, using, and deploying the Depression Prediction Model. For any issues or further information, feel free to open an issue in this repository.
+Finally, we sincerely thank each team member for their unwavering dedication, collaborative spirit, and consistent efforts in bringing this project to fruition.
+
+
+
