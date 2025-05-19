@@ -105,10 +105,10 @@ The following performance metrics were achieved by the trained models:
 
 ### Bar Plot Comparison of Models
 
-![Model's Result Using Bar Plot]([https://github.com/izaanz/ML-Indian-House-Prediction](https://github.com/pk002-hunter/pbl/])
+![Model's performance using bar plots](https://raw.githubusercontent.com/pk002-hunter/pbl/main/performance.png)
 
 ### Radar Chart Models Comparison
-![Model's Result Using Radar]([(https://github.com/pk002-hunter/pbl/)])
+![Model's Result Using Radar chartr](https://raw.githubusercontent.com/pk002-hunter/pbl/main/radarchart.png)
 
 ## How to Use the Model
 
@@ -192,11 +192,8 @@ Use train.py to send test queries to your model:
 
 This is a machine learning-based web application for predicting house prices in India. The app is powered by a regression model that takes various house attributes (such as location, size, number of rooms, etc.) to predict the price of a house.
 
-The app is deployed on the cloud and can be accessed through the following link:
 
-https://ml-indian-house-prediction.onrender.com/
-
-![Cloud Deployment]([https://github.com/pk002-hunter/pbl/edit])
+![Cloud Deployment](https://raw.githubusercontent.com/pk002-hunter/pbl/main/Flowchart.png)
 
 You can input house details into the app, and it will generate a predicted price based on the trained model.
 
