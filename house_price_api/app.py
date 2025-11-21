@@ -7,7 +7,6 @@ app = Flask(__name__)
 model = joblib.load("model.joblib")
 dv = joblib.load("dv.joblib")
 
-# 👉 This route is missing in your file; add it!
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
